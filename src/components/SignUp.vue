@@ -31,16 +31,13 @@
 
     </form>
   </div>
-  <!-- <div>Sign Up</div> -->
-  <!-- <PersonalRouter :route="route" :buttonText="buttonText" /> -->
-  <!-- <p>Good Music, Patience and a lot effort</p> -->
-  <!-- <p>Keep calm and code on!</p> -->
 </template>
 
 <script setup>
 import PersonalRouter from "./PersonalRouter.vue";
 import { supabase } from "../supabase";
 import { ref } from "vue";
+import { useRouter } from "vue-router";
 
 
 // Route Variables
@@ -51,8 +48,6 @@ const buttonText = "Test the Sign In Route";
 const email = ref(null);
 const password = ref(null);
 const confirmPassword = ref(null);
-
-// return {email, password, confirmPassword, errorMsg};
 
 // Error Message
 const errorMsg = ref(null);
@@ -67,7 +62,7 @@ const register = async () => {
       })
       if (error) throw error
         router.push({name: "Login"})
-    } catch(error){
+    } catch(error) {
       errorMsg.value = error.message
     }
   } else {
@@ -76,13 +71,8 @@ const register = async () => {
   }
 }
 
-// Show hide password variable
-
 // Show hide confrimPassword variable
 
-// Router to push user once SignedUp to Log In
-
-// Arrow function to SignUp user to supaBase with a timeOut() method for showing the error
 
 </script>
 

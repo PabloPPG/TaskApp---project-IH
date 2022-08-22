@@ -5,7 +5,7 @@
       <p class="text-red-500">{{ errorMsg }}</p>    
     </div>
     <!-- login -->
-    <form action="" class="p-8 flex flex-col bg-light-grey rounded-md shadow-lg">
+    <form @submit.prevent="login" class="p-8 flex flex-col bg-light-grey rounded-md shadow-lg">
 
       <h1 class="text-3xl text-at-light-green mb-4">Register</h1>
 
@@ -16,7 +16,7 @@
 
       <div class="flex flex-col mb-2">
         <label for="password" class="mb-1 text-sm text-at-light-green">Password</label>
-        <input type="password" required class="p-2 text-gray-500 focus:outline-none" id="password" v-model="passwordpassword">
+        <input type="password" required class="p-2 text-gray-500 focus:outline-none" id="password" v-model="password">
       </div>
 
       <button type="submit" class="mt-6 py-2 px-6 rounded-sm self-start text-sm text-white bg-at-light-green duration-300 border-solid border-2 border-transparent hover:border-at-light-green hover:bg-white hover:text-at-light-green">Login</button>
@@ -25,10 +25,6 @@
 
     </form>
   </div>
-  <!-- <div>Sign In</div>
-  <PersonalRouter :route="route" :buttonText="buttonText" />
-  <p>Time to build up the Final Project!</p>
-  <p class="wu-text">Wu Tang Forever</p> -->
 </template>
 
 
@@ -47,36 +43,38 @@ const buttonText = "Test the Sign Up Route";
 // Input Fields
 const email = ref(null);
 const password = ref(null);
+const router = useRouter();
 
 // Error Message
 const errorMsg = ref(null);
 
 //Show hide password variables
-const passwordFieldType = computed(() =>
-  hidePassword.value ? "password" : "text"
-);
-const hidePassword = ref(true);
+// const passwordFieldType = computed(() =>
+//   hidePassword.value ? "password" : "text"
+// );
+// const hidePassword = ref(true);
 
 
 // Router to push user once SignedIn to the HomeView
 const redirect = useRouter();
 
 // Arrow function to Signin user to supaBase
-const signIn = async () => {
-  try {
-    // calls the user store and send the users info to backend to logIn
-    await useUserStore().signIn(email.value, password.value);
-    // redirects user to the homeView
-    redirect.push({ path: "/" });
-  } catch (error) {
-    // displays error message
+
+const login = async () => {
+  try{
+    const {error} = await supabase.auth.signIn({
+      email: email.value,
+      password: password.value,
+    })
+    if (error) throw error;
+    router.push({ path: "/"});
+  } catch(error) {
     errorMsg.value = `Error: ${error.message}`;
-    // hides error message
-    setTimeout(() => {
-      errorMsg.value = null;
-    }, 5000);
+    setTimeout(()=>{errorMsg.value = null},5000);
   }
-};
+}
+
+
 </script>
 
 <style>
