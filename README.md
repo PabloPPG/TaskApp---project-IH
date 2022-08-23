@@ -1,4 +1,24 @@
-# final-boiler-plate
+# TaskApp website. Project made by Pablo Peñalver Guzmán.
+## The websiste is made for tracking your daily tasks. It contains a sign in / sign up and a home view where your tasks are created, stored and, if you want, modified.
+
+### Technologies used in the project
+Vue, Tailwind, Supabase
+
+### Deploy
+
+-
+
+### Daily tasks
+
+-18/AGO/2022 to 21/AGO/2022: Rewatch all the videos + read documentation to prepare myself for the project.
+
+-21/AGO/2022: Sign up + /auth path tailwind
+
+-22/AGO/2022: End signup/signin and logout
+
+-23/AGO/2022: Fix day 22/AGO/2022 errors + tasks project structuring
+
+<!-- # final-boiler-plate
 
 This template should help get you started developing the final project running on Vue 3 with the composition API, Pinia as a state management tool, vue router, vite and lastly Supabase running on the backend.
 
@@ -38,32 +58,4 @@ npm run dev
 
 ```sh
 npm run build
-```
-
-### Good Music is always key!
-
-```sh
-Wu Tang Clan
-A tribe called quest
-Kendrick Lamar
-Outkast
-Dr. Dre
-N.W.A
-De La Soul 
-Ms. Lauryn Hill
-J. Cole 
-Guts
-Naughty By Nature
-People under the stairs
-Nujabes
-NAS
-KRS-One
-The Pharcyde
-Jurassic 5
-Gang starr
-Jay Z
-Mobb Depp
-Common
-Lil Supa
-```
-[Hip Hop Spotify Playlist](https://open.spotify.com/playlist/4vKftyhS1gQovakehVcq1u?si=a7a119382dfe40da)
+``` -->
