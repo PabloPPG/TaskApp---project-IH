@@ -1,5 +1,6 @@
 <script setup>
 import Nav from "./components/Nav.vue"
+import Footer from "./components/Footer.vue";
 import { onMounted } from "vue";
 import { storeToRefs } from "pinia";
 import { useRouter } from "vue-router";
@@ -11,7 +12,8 @@ const userStore = useUserStore();
 const { user } = storeToRefs(userStore);
 
 components:{
-  Nav
+  Nav,
+  Footer
 }
 
 onMounted(async () => {
@@ -21,10 +23,10 @@ onMounted(async () => {
     if (!user.value) {
       // redirect them to logout if the user is not there
       appReady.value = true;
-      router.push({ path: "/auth/login" });
+      router.push({ path: "/auth" });
     } else {
       // continue to dashboard
-      router.push({ path: "/" });
+      // router.push({ path: "/" });
     }
   } catch (e) {
     console.log(e);
@@ -34,7 +36,6 @@ onMounted(async () => {
 
 <template>
   <div class="min-h-full font-Poppins box-border">
-    <Nav />
     <router-view />
   </div>
 </template>

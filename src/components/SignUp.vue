@@ -11,23 +11,23 @@
 
       <div class="flex flex-col mb-2">
         <label for="email" class="mb-1 text-sm text-at-light-green">Email</label>
-        <input type="text" required class="p-2 text-gray-500 focus:outline-none" id="email" v-model="email">
+        <input type="text" required placeholder="emailname@email.com" class="p-2 text-gray-500 focus:outline-none" id="email" v-model="email">
       </div>
 
       <div class="flex flex-col mb-2">
         <label for="password" class="mb-1 text-sm text-at-light-green">Password</label>
-        <input type="password" required class="p-2 text-gray-500 focus:outline-none" id="password" v-model="password">
+        <input type="password" required placeholder="******" class="p-2 text-gray-500 focus:outline-none" id="password" v-model="password">
       </div>
 
       <div class="flex flex-col mb-2">
         <label for="confirmPassword" class="mb-1 text-sm text-at-light-green">Confirm Password</label>
-        <input type="password" required class="p-2 text-gray-500 focus:outline-none" id="confirmPassword" v-model="confirmPassword">
+        <input type="password" required placeholder="******" class="p-2 text-gray-500 focus:outline-none" id="confirmPassword" v-model="confirmPassword">
       </div>
 
       <button type="submit" class="mt-6 py-2 px-6 rounded-sm self-start text-sm text-white bg-at-light-green duration-300 border-solid border-2 border-transparent hover:border-at-light-green hover:bg-white hover:text-at-light-green">Register
       </button>
 
-      <router-link class="text-sm mt-6 text-center" :to="{ path: '/auth/login' }">Already have an acount? <span class="text-at-light-green">Login</span></router-link>
+      <router-link class="text-sm mt-6 text-center" :to="{ path: '/auth' }">Already have an acount? <span class="text-at-light-green">Login</span></router-link>
 
     </form>
   </div>
@@ -38,11 +38,15 @@ import PersonalRouter from "./PersonalRouter.vue";
 import { supabase } from "../supabase";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
+import { useUserStore } from "../stores/user";
 
 
 // Route Variables
-const route = "/auth/login";
+const route = "/auth";
 const buttonText = "Test the Sign In Route";
+//Habilita libreria de vue router y da acceso a useRouter() para redireccionar
+const router = useRouter();
+
 
 // Input Fields
 const email = ref(null);
@@ -53,22 +57,38 @@ const confirmPassword = ref(null);
 const errorMsg = ref(null);
 
 //Register function
+// const register = async () => {
+//   if (password.value === confirmPassword.value){
+//     try{
+//       const{error} = await supabase.auth.signUp({
+//           email: email.value,
+//           password: password.value,
+//       })
+//       if (error) throw error
+//         router.push({name: "Login"})
+//     } catch(error) {
+//       errorMsg.value = error.message
+//     }
+//   } else {
+//     errorMsg.value = "Error: Password do not match"
+//     setTimeout(()=>{errorMsg.value = null},5000)
+//   }
+// }
+
 const register = async () => {
-  if (password.value === confirmPassword.value){
+  if(password.value === confirmPassword.value){
     try{
-      const{error} = await supabase.auth.signUp({
-          email: email.value,
-          password: password.value,
-      })
-      if (error) throw error
-        router.push({name: "Login"})
-    } catch(error) {
-      errorMsg.value = error.message
+      await useUserStore().signUp(email.value, password.value)
+      router.push({path: "/auth"})
     }
-  } else {
-    errorMsg.value = "Error: Password do not match"
-    setTimeout(()=>{errorMsg.value = null},5000)
+    catch(error){
+      errorMsg.value = error.message;
+      setTimeout(()=>{errorMsg.value = null},5000);
+    }
+    return
   }
+  errorMsg.value = "Las contraseñas no son iguales"
+  setTimeout(()=>{errorMsg.value = null},5000);
 }
 
 // Show hide confrimPassword variable

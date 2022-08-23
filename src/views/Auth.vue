@@ -1,9 +1,18 @@
 <template>
-<h1></h1>
+  <Nav />
+  <Footer />
   <router-view></router-view>
 </template>
 
-<script setup></script>
+<script setup>
+import Nav from '../components/Nav.vue';
+import Footer from '../components/Footer.vue';
+
+components: {
+  Nav,
+  Footer
+}
+</script>
 
 <style></style>
 
