@@ -1,15 +1,21 @@
 <template>
   <Nav />
+  <NewTask />
+  <TaskItem />
   <Footer />
 </template>
 
 <script setup>
 import Nav from '../components/Nav.vue';
 import Footer from '../components/Footer.vue';
+import NewTask from '../components/NewTask.vue';
+import TaskItem from '../components/TaskItem.vue';
 
 components: {
   Nav,
-  Footer
+  Footer,
+  NewTask,
+  TaskItem
 }
 </script>
 
