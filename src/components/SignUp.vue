@@ -34,8 +34,6 @@
 </template>
 
 <script setup>
-import PersonalRouter from "./PersonalRouter.vue";
-import { supabase } from "../supabase";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { useUserStore } from "../stores/user";
@@ -55,25 +53,6 @@ const confirmPassword = ref(null);
 
 // Error Message
 const errorMsg = ref(null);
-
-//Register function
-// const register = async () => {
-//   if (password.value === confirmPassword.value){
-//     try{
-//       const{error} = await supabase.auth.signUp({
-//           email: email.value,
-//           password: password.value,
-//       })
-//       if (error) throw error
-//         router.push({name: "Login"})
-//     } catch(error) {
-//       errorMsg.value = error.message
-//     }
-//   } else {
-//     errorMsg.value = "Error: Password do not match"
-//     setTimeout(()=>{errorMsg.value = null},5000)
-//   }
-// }
 
 const register = async () => {
   if(password.value === confirmPassword.value){

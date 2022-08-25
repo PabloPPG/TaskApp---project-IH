@@ -5,6 +5,7 @@
         <img class="w-16" src="@/assets/tasks.png" alt="task icon">
         <h1 class="text-lg">TaskApp</h1>
       </div>
+      <!-- Routes to signin/singup -->
       <ul v-if="!user" class="flex flex-1 justify-end gap-x-10">
         <router-link class="cursor-pointer" :to="{ path: '/auth' }">Log In</router-link>
         <router-link class="cursor-pointer" :to="{ path: '/auth/sign-up' }">Sign Up</router-link>

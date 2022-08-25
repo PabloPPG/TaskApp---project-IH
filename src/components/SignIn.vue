@@ -29,12 +29,9 @@
 
 
 <script setup>
-import { ref, computed } from "vue";
-import PersonalRouter from "./PersonalRouter.vue";
-import { supabase } from "../supabase";
+import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { useUserStore } from "../stores/user";
-import { storeToRefs } from "pinia";
 
 // Route Variables
 const route = "/auth/sign-up";
@@ -48,43 +45,11 @@ const router = useRouter();
 // Error Message
 const errorMsg = ref(null);
 
-//Show hide password variables
-// const passwordFieldType = computed(() =>
-//   hidePassword.value ? "password" : "text"
-// );
-// const hidePassword = ref(true);
-
-
 // Router to push user once SignedIn to the HomeView
 const redirect = useRouter();
 
 // Arrow function to Signin user to supaBase
 
-// const login = async () => {
-//   try{
-//     const {error} = await supabase.auth.signIn({
-//       email: email.value,
-//       password: password.value,
-//     })
-//     if (error) throw error;
-//     router.push({ path: "/"});
-    
-//   } catch(error) {
-//     errorMsg.value = `Error: ${error.message}`;
-//     setTimeout(()=>{errorMsg.value = null},5000);
-//   }
-// },
-
-// const login = async () => {
-//   try{
-//     await supabase.auth.signIn(email.value, password.value);
-//     router.push({path: "/"})
-//   }
-//   catch(error){
-//     errorMsg.value = `${error.message}`;
-//     setTimeout(()=>{errorMsg.value = null},5000);
-//   }
-// }
 const login = async () => {
   try{
     await useUserStore().signIn(email.value, password.value);
