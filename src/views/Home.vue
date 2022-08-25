@@ -15,13 +15,6 @@ import { ref } from "vue";
 import { useTaskStore } from "../stores/task";
 
 
-components: {
-  Nav,
-  Footer,
-  NewTask,
-  TaskItem
-}
-
 //Tasks contained in an array
 let tasks = ref([]);
 
@@ -50,9 +43,10 @@ const remove = async (item) => {
 }
 
 const edit = async (item) => {
-  const newTitle = item.newValue;
+  const newTitle = item.newTitle;
+  const newDescription = item.newDescription;
   const editId = item.oldValue.id;
-  await useTaskStore().editTitle(newTitle, editId);
+  await useTaskStore().editTask(newTitle, newDescription, editId);
   getTasks();
 }
 

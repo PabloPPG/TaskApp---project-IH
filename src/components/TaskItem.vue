@@ -158,7 +158,8 @@ function edit() {
     inputVisibility.value = false;
     const editValues = {
       oldValue: props.item,
-      newValue: (editNewTaskTitle.value),
+      newTitle: editNewTaskTitle.value,
+      newDescription: editNewTaskDescription.value,
     };
     emit("childEdit", editValues);
     editNewTaskTitle.value = "";
