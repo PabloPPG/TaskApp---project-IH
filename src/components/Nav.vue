@@ -6,7 +6,7 @@
         <h1 class="text-lg">TaskApp</h1>
       </div>
       <ul v-if="!user" class="flex flex-1 justify-end gap-x-10">
-        <router-link class="cursor-pointer" :to="{ path: '/auth/login' }">Log In</router-link>
+        <router-link class="cursor-pointer" :to="{ path: '/auth' }">Log In</router-link>
         <router-link class="cursor-pointer" :to="{ path: '/auth/sign-up' }">Sign Up</router-link>
       </ul>
       <ul v-if="user" class="flex flex-1 justify-end gap-x-10">

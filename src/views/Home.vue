@@ -33,8 +33,7 @@ const getTasks = async () => {
 getTasks();
 
 const addNewTask = async (taskTitle, taskDescription) => {
-  await useTaskStore().addTask(taskTitle);
-  await useTaskStore().addTask(taskDescription);
+  await useTaskStore().addTask(taskTitle, taskDescription);
   getTasks();
 }
 
