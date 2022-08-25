@@ -18,6 +18,8 @@ Vue, Tailwind, Supabase
 
 -23/AGO/2022: Fix day 22/AGO/2022 errors + tasks project structuring
 
+-24/AGO/2022: NewTask, TaskItem + task buttons
+
 <!-- # final-boiler-plate
 
 This template should help get you started developing the final project running on Vue 3 with the composition API, Pinia as a state management tool, vue router, vite and lastly Supabase running on the backend.

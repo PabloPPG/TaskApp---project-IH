@@ -17,8 +17,8 @@
         </div>
         <!-- Task description -->
          <div class="flex flex-col">
-          <label for="task-description" class="mb-1 text-sm text-at-light-green">Task Title</label>
-          <input type="text" class="p-2 text-gray-500 focus:outline-none resize-none" id="task-description" v-model="taskDescription" placeholder="Describe your task here">
+          <label for="task-description" class="mb-1 text-sm text-at-light-green">Task Description</label>
+          <textarea rows="4" class="p-2 text-gray-500 focus:outline-none resize-none" id="task-description" v-model="taskDescription" placeholder="Describe your task here"></textarea>
         </div>
         <!-- SUBMIT -->
         <button @click.prevent="addNewTask" class="mt-6 py-2 px-6 rounded-sm self-start text-sm text-white bg-at-light-green duration-300 border-solid border-2 border-transparent hover:border-at-light-green hover:bg-white hover:text-at-light-green">Add new task</button>
@@ -51,8 +51,7 @@ const addNewTask = () => {
     },5000);
   } else {
     emptyInput.value = false;
-    newTaskEmitted("newTask", taskTitle.value);
-    newTaskEmitted("newTask", taskDescription.value); 
+    newTaskEmitted("newTask", taskTitle.value, taskDescription.value);
     taskTitle.value = "";
     taskDescription.value = ""; 
   }
