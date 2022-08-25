@@ -6,7 +6,7 @@ Vue, Tailwind, Supabase
 
 ### Deploy
 
--https://task-app-project-ih-ppg.vercel.app/auth
+- https://task-app-project-ih-ppg.vercel.app
 
 ### Daily tasks
 
