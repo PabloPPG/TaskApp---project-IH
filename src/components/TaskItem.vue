@@ -1,6 +1,6 @@
 <template>
   <div
-    class="bg-light-grey rounded-md shadow-lg p-10 gap-5 items-center justify-center my-5 max-w-screen-md mx-auto px-4 py-10 border-4"
+    class="container bg-light-grey rounded-md shadow-lg p-10 gap-5 items-center justify-center my-5 max-w-screen-md mx-auto px-4 py-10 border-4 border-at-light-green"
   >
     <!-- Task -->
     <div class="text-center">
@@ -15,11 +15,45 @@
       </p>
     </div>
 
+        <!-- Buttons -->
+        
+    <div
+      class="w-full flex flex-col sm:flex-row gap-2 items-center justify-between"
+    >
+      <button
+        v-if="item.is_complete"
+        type="button"
+        class="block w-3/12 text-white bg-green-500 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-200 font-medium rounded-sm text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+        @click="toggleTask"
+      >
+        Done
+      </button>
+      <button
+        v-if="!item.is_complete"
+        class="block w-3/12 text-white bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-sm text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:focus:ring-yellow-900"
+        @click="toggleTask"
+      >
+        Not done
+      </button>
+      <button
+        class="block w-3/12 text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-sm text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        @click="toggleEdit"
+      >
+        Modify
+      </button>
+      <button
+        class="block w-3/12 text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-sm text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+        @click.prevent="remove"
+      >
+        Delete
+      </button>
+    </div>
+
     <!-- Edit dialog -->
     <form action="">
       <div
         v-if="inputVisibility"
-        class="bg-light-grey rounded-md shadow-lg p-10 gap-5 items-center justify-center my-5 max-w-screen-md mx-auto px-4 py-10"
+        class="bg-light-grey rounded-md p-10 gap-5 items-center justify-center max-w-screen-md mx-auto px-4 py-10"
       >
         <div class="flex flex-col">
           <label
@@ -62,38 +96,6 @@
       </div>
     </form>
 
-    <!-- Buttons -->
-    <div
-      class="w-full flex flex-col sm:flex-row gap-2 items-center justify-between"
-    >
-      <button
-        v-if="item.is_complete"
-        type="button"
-        class="block w-3/12 text-white bg-green-500 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-200 font-medium rounded-sm text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
-        @click="toggleTask"
-      >
-        Done
-      </button>
-      <button
-        v-if="!item.is_complete"
-        class="block w-3/12 text-white bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-sm text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:focus:ring-yellow-900"
-        @click="toggleTask"
-      >
-        Not done
-      </button>
-      <button
-        class="block w-3/12 text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-sm text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-        @click="toggleEdit"
-      >
-        Modify
-      </button>
-      <button
-        class="block w-3/12 text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-sm text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
-        @click.prevent="remove"
-      >
-        Delete
-      </button>
-    </div>
   </div>
 </template>
 
@@ -156,8 +158,7 @@ function edit() {
     inputVisibility.value = false;
     const editValues = {
       oldValue: props.item,
-      newValue: editNewTaskTitle.value,
-      newValue: editNewTaskDescription.value,
+      newValue: (editNewTaskTitle.value),
     };
     emit("childEdit", editValues);
     editNewTaskTitle.value = "";

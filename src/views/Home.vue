@@ -52,7 +52,7 @@ const remove = async (item) => {
 const edit = async (item) => {
   const newTitle = item.newValue;
   const editId = item.oldValue.id;
-  await useTaskStore().editTask(newTitle, editId);
+  await useTaskStore().editTitle(newTitle, editId);
   getTasks();
 }
 
